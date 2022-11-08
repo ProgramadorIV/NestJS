@@ -9,7 +9,7 @@ import {
   Put,
   Query,
 } from '@nestjs/common';
-import { get } from 'http';
+import { ProductsService } from './products.service';
 
 interface Product {
   name: string;
@@ -18,8 +18,11 @@ interface Product {
 
 @Controller('products')
 export class ProductsController {
+  constructor(private readonly productsService: ProductsService) {}
+
   @Get()
   getAllProducts(): string {
+    //REEMPLAZAR AQUI CON LOS METODOS DEL SERVICIO.
     return 'todos los productos';
   }
   @Post()
