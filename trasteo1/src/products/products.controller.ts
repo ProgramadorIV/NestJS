@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import {
   Body,
   Controller,
@@ -21,38 +22,41 @@ export class ProductsController {
   constructor(private readonly productsService: ProductsService) {}
 
   @Get()
-  getAllProducts(): string {
-    //REEMPLAZAR AQUI CON LOS METODOS DEL SERVICIO.
-    return 'todos los productos';
+  getAllProducts(@Query('name') name: string): string {
+    if (name) {
+      return this.productsService.getProductByName(name);
+    }
+    return this.productsService.getAllProducts();
   }
   @Post()
   createProduct(@Body() product: Product) {
-    console.log(product.name);
-    return 'producto creado';
+    
+    return this.productsService.createProduct(product);
   }
   @Put(':id')
   replaceProduct(@Param('id') id: string, @Body() product: Product) {
-    console.log(product.name);
-    return `producto ${id} reemplazado`;
+    
+    return this.productsService.replaceProduct(id, product);
   }
 
   @Patch()
-  updateProduct() {
-    return 'producto modificado';
+  updateProduct(@Param('id') id: string, @Body() product: Product) {
+    
+    return this.productsService.updateProduct(id, product);
   }
 
   @Delete(':id')
   deleteProduct(@Param('id') id: string) {
-    return `producto ${id} eliminado`;
+    return this.productsService.deleteProduct(id);
   }
 
   @Get(':id')
   getProductById(@Param('id') id: string): string {
-    return `Producto: ${id}`;
+    return this.productsService.getProductById(id);
   }
 
   @Get()
   getProductByName(@Query('name') name: string) {
-    return `Producto con nombre ${name}`;
+    return this.productsService.getProductByName(name);
   }
 }

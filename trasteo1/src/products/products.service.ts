@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { Injectable } from '@nestjs/common';
 
 interface Product {
@@ -21,7 +22,7 @@ export class ProductsService {
     return `producto ${id} reemplazado`;
   }
 
-  updateProduct() {
+  updateProduct(id: string, product: Product) {
     return 'producto modificado';
   }
 
