@@ -4,7 +4,7 @@ export class Monumento {
     countryCode: string
     country: string
     city: string
-    location: string //(latitud, longitud)
+    location: string
     name: string
     description: string
     url: string

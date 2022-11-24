@@ -1,9 +1,10 @@
+/* eslint-disable prettier/prettier */
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { MonumentosController } from './monumentos/monumentos.controller';
-import { MonumentosService } from './services/monumentos/monumentos.service';
 import { MonumentosModule } from './monumentos/monumentos.module';
+import { MonumentosService } from './monumentos/monumentos.service';
 
 @Module({
   imports: [MonumentosModule],

@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { Injectable } from '@nestjs/common';
 import { CreateMonumentoDto } from './dto/create-monumento.dto';
 import { UpdateMonumentoDto } from './dto/update-monumento.dto';
