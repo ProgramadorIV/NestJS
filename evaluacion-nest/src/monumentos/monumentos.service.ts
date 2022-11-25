@@ -1,27 +1,13 @@
 /* eslint-disable prettier/prettier */
 import { Injectable } from '@nestjs/common';
-import { CreateMonumentoDto } from './dto/create-monumento.dto';
-import { UpdateMonumentoDto } from './dto/update-monumento.dto';
+import { InjectRepository } from '@nestjs/typeorm';
+import { TypeOrmCrudService } from '@nestjsx/crud-typeorm';
+import { Monumento } from './entities/monumento.entity';
 
 @Injectable()
-export class MonumentosService {
-  create(createMonumentoDto: CreateMonumentoDto) {
-    return 'This action adds a new monumento';
-  }
+export class MonumentosService extends TypeOrmCrudService<Monumento>{
 
-  findAll() {
-    return `This action returns all monumentos`;
-  }
-
-  findOne(id: number) {
-    return `This action returns a #${id} monumento`;
-  }
-
-  update(id: number, updateMonumentoDto: UpdateMonumentoDto) {
-    return `This action updates a #${id} monumento`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} monumento`;
+  constructor(@InjectRepository(Monumento) repo){
+    super(repo)
   }
 }

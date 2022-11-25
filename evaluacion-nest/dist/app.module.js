@@ -8,18 +8,25 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AppModule = void 0;
 const common_1 = require("@nestjs/common");
+const typeorm_1 = require("@nestjs/typeorm");
 const app_controller_1 = require("./app.controller");
 const app_service_1 = require("./app.service");
-const monumentos_controller_1 = require("./monumentos/monumentos.controller");
 const monumentos_module_1 = require("./monumentos/monumentos.module");
-const monumentos_service_1 = require("./monumentos/monumentos.service");
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
     (0, common_1.Module)({
-        imports: [monumentos_module_1.MonumentosModule],
-        controllers: [app_controller_1.AppController, monumentos_controller_1.MonumentosController],
-        providers: [app_service_1.AppService, monumentos_service_1.MonumentosService],
+        imports: [
+            typeorm_1.TypeOrmModule.forRoot({
+                type: 'sqlite',
+                database: ':memory:',
+                entities: ['dist/**/*.entity{.ts,.js}'],
+                synchronize: true,
+            }),
+            monumentos_module_1.MonumentosModule
+        ],
+        controllers: [app_controller_1.AppController],
+        providers: [app_service_1.AppService],
     })
 ], AppModule);
 exports.AppModule = AppModule;

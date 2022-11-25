@@ -1,5 +1,5 @@
 export declare class Monumento {
-    id: string;
+    id: number;
     countryCode: string;
     country: string;
     city: string;

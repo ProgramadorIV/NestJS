@@ -3,33 +3,17 @@ import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/commo
 import { MonumentosService } from './monumentos.service';
 import { CreateMonumentoDto } from './dto/create-monumento.dto';
 import { UpdateMonumentoDto } from './dto/update-monumento.dto';
+import { Crud, CrudController } from '@nestjsx/crud';
+import { Monumento } from './entities/monumento.entity';
 
+@Crud({
+  model: {
+    type: Monumento
+  }
+})
 @Controller('monumentos')
-export class MonumentosController {
-  constructor(private readonly monumentosService: MonumentosService) {}
+export class MonumentosController implements CrudController<Monumento> {
 
-  @Post()
-  create(@Body() createMonumentoDto: CreateMonumentoDto) {
-    return this.monumentosService.create(createMonumentoDto);
-  }
+  constructor(public service: MonumentosService) {}
 
-  @Get()
-  findAll() {
-    return this.monumentosService.findAll();
-  }
-
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.monumentosService.findOne(+id);
-  }
-
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateMonumentoDto: UpdateMonumentoDto) {
-    return this.monumentosService.update(+id, updateMonumentoDto);
-  }
-
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.monumentosService.remove(+id);
-  }
 }

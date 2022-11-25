@@ -10,10 +10,13 @@ exports.MonumentosModule = void 0;
 const common_1 = require("@nestjs/common");
 const monumentos_service_1 = require("./monumentos.service");
 const monumentos_controller_1 = require("./monumentos.controller");
+const dist_1 = require("@nestjs/typeorm/dist");
+const monumento_entity_1 = require("./entities/monumento.entity");
 let MonumentosModule = class MonumentosModule {
 };
 MonumentosModule = __decorate([
     (0, common_1.Module)({
+        imports: [dist_1.TypeOrmModule.forFeature([monumento_entity_1.Monumento])],
         controllers: [monumentos_controller_1.MonumentosController],
         providers: [monumentos_service_1.MonumentosService]
     })
